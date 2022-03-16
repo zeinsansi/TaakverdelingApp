@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaakverdelingApp", "TaakverdelingApp\TaakverdelingApp.csproj", "{66C4B933-7FB4-42E5-8812-A7C9BF2A6103}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaakVerdelingLibrary", "TaakVerdelingLibrary\TaakVerdelingLibrary.csproj", "{3E9DF997-F1CC-49F6-AC52-49BD44BFDED3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66C4B933-7FB4-42E5-8812-A7C9BF2A6103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66C4B933-7FB4-42E5-8812-A7C9BF2A6103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66C4B933-7FB4-42E5-8812-A7C9BF2A6103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66C4B933-7FB4-42E5-8812-A7C9BF2A6103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E9DF997-F1CC-49F6-AC52-49BD44BFDED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E9DF997-F1CC-49F6-AC52-49BD44BFDED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E9DF997-F1CC-49F6-AC52-49BD44BFDED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E9DF997-F1CC-49F6-AC52-49BD44BFDED3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E6ADEF5-84C5-43F2-B666-96C6D0966A7C}
+	EndGlobalSection
+EndGlobal
