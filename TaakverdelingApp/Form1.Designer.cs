@@ -32,6 +32,7 @@ namespace TaakverdelingApp
             this.gbTaken = new System.Windows.Forms.GroupBox();
             this.lbxTaken = new System.Windows.Forms.CheckedListBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnMijnGreop = new System.Windows.Forms.Button();
             this.gbTaken.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +57,7 @@ namespace TaakverdelingApp
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(300, 532);
+            this.button1.Location = new System.Drawing.Point(302, 493);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(208, 81);
             this.button1.TabIndex = 2;
@@ -64,11 +65,22 @@ namespace TaakverdelingApp
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnMijnGreop
+            // 
+            this.btnMijnGreop.Location = new System.Drawing.Point(716, 43);
+            this.btnMijnGreop.Name = "btnMijnGreop";
+            this.btnMijnGreop.Size = new System.Drawing.Size(208, 59);
+            this.btnMijnGreop.TabIndex = 3;
+            this.btnMijnGreop.Text = "Mijn Groepen";
+            this.btnMijnGreop.UseVisualStyleBackColor = true;
+            this.btnMijnGreop.Click += new System.EventHandler(this.btnGreopForm_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 699);
+            this.Controls.Add(this.btnMijnGreop);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.gbTaken);
             this.Name = "Form1";
@@ -84,6 +96,7 @@ namespace TaakverdelingApp
         private System.Windows.Forms.GroupBox gbTaken;
         private System.Windows.Forms.CheckedListBox lbxTaken;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnMijnGreop;
     }
 }
 
