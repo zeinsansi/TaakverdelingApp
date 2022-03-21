@@ -55,30 +55,31 @@ namespace TaakverdelingApp
             CloseConnection();
         }
 
-        public List<Taak> TaakWeergeven()
+        public Taak TaakWeergeven(int id)
         {
-            List<Taak> taken = new List<Taak>();
+            Taak taak = null;
             OpenConnection();
-            SqlCommand command = new SqlCommand("SELECT * FROM Taak", this.connection);
+            SqlCommand command = new SqlCommand("SELECT * FROM Taak WHERE Id = @id", this.connection);
+            command.Parameters.AddWithValue("@id", id);
             SqlDataReader dr =command.ExecuteReader();
             if(dr.HasRows)
             {
                 while(dr.Read())
                 {
-                    taken.Add(new Taak(
+                    taak = new Taak(
                         dr["Naam"].ToString(),
                         dr["Beschrijving"].ToString(),
-                        Convert.ToDateTime(dr["Deadline"])));
+                        Convert.ToDateTime(dr["Deadline"]));
                 }
             }
             CloseConnection();
-            return taken;
+            return taak;
         }
 
         public DataTable HaalGegevensOp()
         {
             OpenConnection();
-            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Taak",this.connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Taak", this.connection))
             {
                 DataTable table = new DataTable();
                 adapter.Fill(table);
@@ -90,7 +91,7 @@ namespace TaakverdelingApp
         public void TaakVerwijderen(int taakId)
         {
             OpenConnection();
-            SqlCommand command = new SqlCommand($"DELETE FROM Taak WHERE Id = @taakId", this.connection);
+            SqlCommand command = new SqlCommand("DELETE FROM Taak WHERE Id = @taakId", this.connection);
             command.Parameters.AddWithValue("@taakId", taakId);
             command.ExecuteNonQuery();
             CloseConnection();

@@ -10,7 +10,7 @@ namespace TaakVerdelingLibrary
     {
         private string Naam;
         private string IdNummer;
-        private List<Taak> taken = new List<Taak>();
+        public List<Taak> taken { get; } = new List<Taak>();
 
         public Persoon (string Naam, string IdNummer)
         {
