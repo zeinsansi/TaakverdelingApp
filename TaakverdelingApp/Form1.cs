@@ -30,7 +30,7 @@ namespace TaakverdelingApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            GetTaken();
+            FilTakenList();
 
         }
 
@@ -47,7 +47,7 @@ namespace TaakverdelingApp
                     if (result == DialogResult.Yes)
                     {
                         db.TaakVerwijderen(Convert.ToInt32(lbxTaken.SelectedValue));
-                        GetTaken();
+                        FilTakenList();
                     }
                 }
             }
@@ -62,9 +62,9 @@ namespace TaakverdelingApp
 
         }
 
-        private void GetTaken()
+        private void FilTakenList()
         {
-            lbxTaken.DataSource = db.HaalGegevensOp();
+            lbxTaken.DataSource = db.GetTaken();
             lbxTaken.DisplayMember = "Naam";
             lbxTaken.ValueMember = "Id";
         }

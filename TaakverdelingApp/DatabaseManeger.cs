@@ -13,8 +13,6 @@ namespace TaakverdelingApp
     {
         private static string connectionString = @"Server=mssqlstud.fhict.local;Database=dbi490959;User Id=dbi490959;Password=welkom123;";
         private SqlConnection connection;
-        public string taakId;
-
 
         private void OpenConnection()
         {
@@ -35,24 +33,27 @@ namespace TaakverdelingApp
             catch { return; }
         }
 
-/*        public void TestToevoegen(string naam )
-        {
-            OpenConnection();
-            SqlCommand command = new SqlCommand("INSERT INTO Persoon VALUES(@naam)", this.connection);
-            command.Parameters.AddWithValue("@naam",naam);
-            command.ExecuteNonQuery();
-            CloseConnection();
-        }*/
-
         public void TaakToevoegen(Taak taak)
         {
             OpenConnection();
-            SqlCommand command = new SqlCommand("INSERT INTO Taak VALUES(@naam , @beshrijving , @deadline)", this.connection);
+            SqlCommand command = new SqlCommand("INSERT INTO Taak(Naam,Beschrijving,Deadline) VALUES(@naam , @beshrijving , @deadline)", this.connection);
             command.Parameters.AddWithValue("naam", taak.GetNaam());
             command.Parameters.AddWithValue("@beshrijving", taak.GetBeschrijving());
             command.Parameters.AddWithValue("@deadline", taak.GetDeadLine());
             command.ExecuteNonQuery();
             CloseConnection();
+        }
+
+        public DataTable GetTaken()
+        {
+            OpenConnection();
+            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Taak", this.connection))
+            {
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+                return table;
+
+            }
         }
 
         public Taak TaakWeergeven(int id)
@@ -76,17 +77,6 @@ namespace TaakverdelingApp
             return taak;
         }
 
-        public DataTable HaalGegevensOp()
-        {
-            OpenConnection();
-            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Taak", this.connection))
-            {
-                DataTable table = new DataTable();
-                adapter.Fill(table);
-                return table;
-
-            }
-        }
 
         public void TaakVerwijderen(int taakId)
         {
@@ -94,21 +84,6 @@ namespace TaakverdelingApp
             SqlCommand command = new SqlCommand("DELETE FROM Taak WHERE Id = @taakId", this.connection);
             command.Parameters.AddWithValue("@taakId", taakId);
             command.ExecuteNonQuery();
-            CloseConnection();
-        }
-
-        public void GetTaakID()
-        {
-            OpenConnection();
-            SqlCommand command = new SqlCommand("SELECT Id FROM Taak", this.connection);
-            SqlDataReader dr = command.ExecuteReader();
-            if (dr.Read())
-            {
-                while (dr.Read())
-                {
-                    taakId = dr["Id"].ToString();
-                }
-            }
             CloseConnection();
         }
 
@@ -122,7 +97,7 @@ namespace TaakverdelingApp
             command.ExecuteNonQuery();
             CloseConnection();
         }
-        public List<Groep> GetGroepn()
+/*        public List<Groep> GetGroepn(int id)
         {
             List<Groep> mijnGroepen = new List<Groep>();
             OpenConnection();
@@ -140,7 +115,64 @@ namespace TaakverdelingApp
             }
             CloseConnection();
             return mijnGroepen;
+        }*/
+        public DataTable GetGroepen()
+        {
+            OpenConnection();
+            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Groep", this.connection))
+            {
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+                return table;
+
+            }
         }
+        public Groep GroepWeergeven(int id)
+        {
+            Groep groep = null;
+            OpenConnection();
+            SqlCommand command = new SqlCommand("SELECT * FROM Groep WHERE Id = @id", this.connection);
+            command.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = command.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    groep = new Groep(
+                        dr["Naam"].ToString(),
+                        dr["ProjectNaam"].ToString(),
+                        dr["ProjectBeshrijving"].ToString());
+                }
+            }
+            CloseConnection();
+            return groep;
+        }
+        public void GroepVerwijderen(int Id)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand("DELETE FROM Groep WHERE Id = @Id", this.connection);
+            command.Parameters.AddWithValue("@Id", Id);
+            command.ExecuteNonQuery();
+            CloseConnection();
+        }
+
+        public DataTable GetGroepleden(int id)
+        {
+            OpenConnection();
+            string query = @"SELECT * FROM Persoon 
+                 INNER JOIN GroepPersoon on Persoon.Id = GroepPersoon.persoonId
+                 WHERE GroepPersoon.groepId = @id";
+            using (SqlCommand command = new(query, this.connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+
+            {
+                command.Parameters.AddWithValue("id", id);
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+                return table;
+            }
+        }
+
     }
 
 }
