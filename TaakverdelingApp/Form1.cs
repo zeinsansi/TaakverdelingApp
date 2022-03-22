@@ -16,14 +16,22 @@ namespace TaakverdelingApp
     public partial class Form1 : Form
     {
         DatabaseManeger db = new DatabaseManeger();
+        int persoonId;
+        int groepId;
         public Form1()
         {
             InitializeComponent();           
         }
+        public Form1(int persoonId , int groepId)
+        {
+            InitializeComponent();
+            this. persoonId = persoonId;
+            this. groepId = groepId;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-                TaakToevoegen taak = new TaakToevoegen();
+                TaakToevoegen taak = new TaakToevoegen(persoonId , groepId);
                 this.Hide();
                 taak.ShowDialog();
         }
@@ -64,7 +72,7 @@ namespace TaakverdelingApp
 
         private void FilTakenList()
         {
-            lbxTaken.DataSource = db.GetTaken();
+            lbxTaken.DataSource = db.GetTaken(persoonId , groepId);
             lbxTaken.DisplayMember = "Naam";
             lbxTaken.ValueMember = "Id";
         }

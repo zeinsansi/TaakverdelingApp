@@ -14,16 +14,28 @@ namespace TaakverdelingApp
     public partial class TaakToevoegen : Form
     {
 
-        DatabaseManeger DBM = new DatabaseManeger();  
+        DatabaseManeger DBM = new DatabaseManeger();
+        int persoonId;
+        int groepId;
+
         public TaakToevoegen()
         {
             InitializeComponent();
         }
+
+        public TaakToevoegen(int persoonId , int groepId)
+        {
+            InitializeComponent();
+            this. persoonId = persoonId;
+            this.groepId = groepId;
+
+        }
+
         private void btnToevoegen_Click(object sender, EventArgs e)
         {
             if(tbBeschrijving.Text != "" && tbNaam.Text != "")
             {
-                DBM.TaakToevoegen(new Taak(tbNaam.Text, tbBeschrijving.Text, datePicker.Value));
+                DBM.TaakToevoegen(new Taak(tbNaam.Text, tbBeschrijving.Text, datePicker.Value), persoonId , groepId);
                 MessageBox.Show("Taak toegevoegd");
             }
         }

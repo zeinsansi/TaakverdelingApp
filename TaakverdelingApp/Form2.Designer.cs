@@ -30,7 +30,7 @@
         {
             this.btnGroepMaken = new System.Windows.Forms.Button();
             this.gbMijnGroepn = new System.Windows.Forms.GroupBox();
-            this.lbxMijnGroepen = new System.Windows.Forms.CheckedListBox();
+            this.lbMijnGroepen = new System.Windows.Forms.ListBox();
             this.lbGroepleden = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnVerwijderen = new System.Windows.Forms.Button();
@@ -49,7 +49,7 @@
             // 
             // gbMijnGroepn
             // 
-            this.gbMijnGroepn.Controls.Add(this.lbxMijnGroepen);
+            this.gbMijnGroepn.Controls.Add(this.lbMijnGroepen);
             this.gbMijnGroepn.Location = new System.Drawing.Point(81, 59);
             this.gbMijnGroepn.Name = "gbMijnGroepn";
             this.gbMijnGroepn.Size = new System.Drawing.Size(474, 421);
@@ -57,32 +57,34 @@
             this.gbMijnGroepn.TabStop = false;
             this.gbMijnGroepn.Text = "Mijn groepen";
             // 
-            // lbxMijnGroepen
+            // lbMijnGroepen
             // 
-            this.lbxMijnGroepen.FormattingEnabled = true;
-            this.lbxMijnGroepen.Location = new System.Drawing.Point(0, 58);
-            this.lbxMijnGroepen.Name = "lbxMijnGroepen";
-            this.lbxMijnGroepen.Size = new System.Drawing.Size(468, 324);
-            this.lbxMijnGroepen.TabIndex = 1;
-            this.lbxMijnGroepen.SelectedIndexChanged += new System.EventHandler(this.lbxMijnGroepen_SelectedIndexChanged);
+            this.lbMijnGroepen.FormattingEnabled = true;
+            this.lbMijnGroepen.ItemHeight = 30;
+            this.lbMijnGroepen.Location = new System.Drawing.Point(8, 66);
+            this.lbMijnGroepen.Name = "lbMijnGroepen";
+            this.lbMijnGroepen.Size = new System.Drawing.Size(460, 334);
+            this.lbMijnGroepen.TabIndex = 2;
+            this.lbMijnGroepen.SelectedIndexChanged += new System.EventHandler(this.lbMijnGroepen_SelectedIndexChanged);
             // 
             // lbGroepleden
             // 
             this.lbGroepleden.FormattingEnabled = true;
             this.lbGroepleden.ItemHeight = 30;
-            this.lbGroepleden.Location = new System.Drawing.Point(661, 117);
+            this.lbGroepleden.Location = new System.Drawing.Point(661, 125);
             this.lbGroepleden.Name = "lbGroepleden";
             this.lbGroepleden.Size = new System.Drawing.Size(210, 334);
             this.lbGroepleden.TabIndex = 5;
+            this.lbGroepleden.SelectedIndexChanged += new System.EventHandler(this.lbGroepleden_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(661, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 30);
+            this.label1.Size = new System.Drawing.Size(131, 30);
             this.label1.TabIndex = 6;
-            this.label1.Text = "label1";
+            this.label1.Text = "Groep leden:";
             // 
             // btnVerwijderen
             // 
@@ -117,9 +119,9 @@
 
         private System.Windows.Forms.Button btnGroepMaken;
         private System.Windows.Forms.GroupBox gbMijnGroepn;
-        private System.Windows.Forms.CheckedListBox lbxMijnGroepen;
         private System.Windows.Forms.ListBox lbGroepleden;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnVerwijderen;
+        private System.Windows.Forms.ListBox lbMijnGroepen;
     }
 }

@@ -33,22 +33,29 @@ namespace TaakverdelingApp
             catch { return; }
         }
 
-        public void TaakToevoegen(Taak taak)
+        public void TaakToevoegen(Taak taak , int persoonId , int groepId)
         {
             OpenConnection();
-            SqlCommand command = new SqlCommand("INSERT INTO Taak(Naam,Beschrijving,Deadline) VALUES(@naam , @beshrijving , @deadline)", this.connection);
+            SqlCommand command = new SqlCommand("INSERT INTO Taak VALUES(@naam , @beshrijving , @deadline , @persoonId , @groepId)", this.connection);
             command.Parameters.AddWithValue("naam", taak.GetNaam());
             command.Parameters.AddWithValue("@beshrijving", taak.GetBeschrijving());
             command.Parameters.AddWithValue("@deadline", taak.GetDeadLine());
+            command.Parameters.AddWithValue("@persoonId", persoonId);
+            command.Parameters.AddWithValue("@groepId", groepId);
             command.ExecuteNonQuery();
             CloseConnection();
         }
 
-        public DataTable GetTaken()
+        public DataTable GetTaken(int persoonId , int groepId)
         {
             OpenConnection();
-            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Taak", this.connection))
+            string query = @"SELECT * FROM Taak 
+                 WHERE persoonId = @persoonId AND groepId = @groepId";
+            using (SqlCommand command = new(query, this.connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
             {
+                command.Parameters.AddWithValue("@persoonId" , persoonId);
+                command.Parameters.AddWithValue("@groepId" , groepId);
                 DataTable table = new DataTable();
                 adapter.Fill(table);
                 return table;
