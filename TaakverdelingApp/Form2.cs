@@ -14,7 +14,6 @@ namespace TaakverdelingApp
     public partial class MijnGroepn : Form
     {
         DatabaseManeger db = new();
-        int persoonId;
         int groepId;
         public MijnGroepn()
         {
@@ -35,7 +34,10 @@ namespace TaakverdelingApp
 
         private void lbMijnGroepen_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lbGroepleden.SelectionMode = SelectionMode.None;
             FilGroepledenList();
+            lbGroepleden.SelectionMode = SelectionMode.One;
+
         }
 
         private void FilGroepList()
@@ -81,6 +83,14 @@ namespace TaakverdelingApp
                 f.ShowDialog();
             }
 
+        }
+
+        private void btnVoegGroeplidToe_Click(object sender, EventArgs e)
+        {
+            db.VoegGroeplidToe(groepId, tbGebruikerNaam.Text);
+            lbGroepleden.SelectionMode = SelectionMode.None;
+            FilGroepledenList();
+            lbGroepleden.SelectionMode = SelectionMode.One;
         }
     }
 }

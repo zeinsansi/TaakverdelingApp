@@ -14,7 +14,7 @@ namespace TaakverdelingApp
     public partial class TaakToevoegen : Form
     {
 
-        DatabaseManeger DBM = new DatabaseManeger();
+        DatabaseManeger db = new DatabaseManeger();
         int persoonId;
         int groepId;
 
@@ -35,14 +35,14 @@ namespace TaakverdelingApp
         {
             if(tbBeschrijving.Text != "" && tbNaam.Text != "")
             {
-                DBM.TaakToevoegen(new Taak(tbNaam.Text, tbBeschrijving.Text, datePicker.Value), persoonId , groepId);
+                db.TaakToevoegen(new Taak(tbNaam.Text, tbBeschrijving.Text, datePicker.Value), persoonId , groepId);
                 MessageBox.Show("Taak toegevoegd");
             }
         }
 
         private void btnTerug_Click(object sender, EventArgs e)
         {
-                Form1 f = new Form1();
+                Form1 f = new Form1(persoonId , groepId);
                 this.Hide();
                 f.ShowDialog();
         }

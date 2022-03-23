@@ -34,6 +34,9 @@
             this.lbGroepleden = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnVerwijderen = new System.Windows.Forms.Button();
+            this.btnVoegGroeplidToe = new System.Windows.Forms.Button();
+            this.tbGebruikerNaam = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.gbMijnGroepn.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,11 +99,40 @@
             this.btnVerwijderen.UseVisualStyleBackColor = true;
             this.btnVerwijderen.Click += new System.EventHandler(this.btnVerwijderen_Click);
             // 
+            // btnVoegGroeplidToe
+            // 
+            this.btnVoegGroeplidToe.Location = new System.Drawing.Point(663, 532);
+            this.btnVoegGroeplidToe.Name = "btnVoegGroeplidToe";
+            this.btnVoegGroeplidToe.Size = new System.Drawing.Size(208, 47);
+            this.btnVoegGroeplidToe.TabIndex = 8;
+            this.btnVoegGroeplidToe.Text = "Voeg aan groep toe";
+            this.btnVoegGroeplidToe.UseVisualStyleBackColor = true;
+            this.btnVoegGroeplidToe.Click += new System.EventHandler(this.btnVoegGroeplidToe_Click);
+            // 
+            // tbGebruikerNaam
+            // 
+            this.tbGebruikerNaam.Location = new System.Drawing.Point(663, 498);
+            this.tbGebruikerNaam.Name = "tbGebruikerNaam";
+            this.tbGebruikerNaam.Size = new System.Drawing.Size(208, 35);
+            this.tbGebruikerNaam.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(663, 465);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(165, 30);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Gebruiker naam:";
+            // 
             // MijnGroepn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 727);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tbGebruikerNaam);
+            this.Controls.Add(this.btnVoegGroeplidToe);
             this.Controls.Add(this.btnVerwijderen);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbGroepleden);
@@ -123,5 +155,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnVerwijderen;
         private System.Windows.Forms.ListBox lbMijnGroepen;
+        private System.Windows.Forms.Button btnVoegGroeplidToe;
+        private System.Windows.Forms.TextBox tbGebruikerNaam;
+        private System.Windows.Forms.Label label2;
     }
 }

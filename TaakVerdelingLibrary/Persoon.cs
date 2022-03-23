@@ -9,16 +9,16 @@ namespace TaakVerdelingLibrary
     public class Persoon
     {
         private string Naam;
-        private string IdNummer;
+        private string GebruikerNaam;
         public List<Taak> taken { get; } = new List<Taak>();
 
-        public Persoon (string Naam, string IdNummer)
+        public Persoon (string Naam, string GebruikerNaam)
         {
             this.Naam = Naam;
-            this.IdNummer = IdNummer;
+            this.GebruikerNaam = GebruikerNaam;
         }
         public string GetNaam() { return this.Naam; }
-        public string GetIdNummer() { return this.IdNummer; }
+        public string GetGebruikerNaam() { return this.GebruikerNaam; }
 
         public void VoegTaakToe()
         {
@@ -32,7 +32,7 @@ namespace TaakVerdelingLibrary
 
         public override string ToString()
         {
-            return $"Naam: {this.Naam}\nBeschrijving: {this.IdNummer}\n";
+            return $"Naam: {this.Naam}\nGebruikerNaam: {this.GebruikerNaam}\n";
         }
     }
 }

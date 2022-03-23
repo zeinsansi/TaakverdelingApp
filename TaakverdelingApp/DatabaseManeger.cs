@@ -33,7 +33,7 @@ namespace TaakverdelingApp
             catch { return; }
         }
 
-        public void TaakToevoegen(Taak taak , int persoonId , int groepId)
+        public void TaakToevoegen(Taak taak, int persoonId, int groepId)
         {
             OpenConnection();
             SqlCommand command = new SqlCommand("INSERT INTO Taak VALUES(@naam , @beshrijving , @deadline , @persoonId , @groepId)", this.connection);
@@ -46,7 +46,7 @@ namespace TaakverdelingApp
             CloseConnection();
         }
 
-        public DataTable GetTaken(int persoonId , int groepId)
+        public DataTable GetTaken(int persoonId, int groepId)
         {
             OpenConnection();
             string query = @"SELECT * FROM Taak 
@@ -54,8 +54,8 @@ namespace TaakverdelingApp
             using (SqlCommand command = new(query, this.connection))
             using (SqlDataAdapter adapter = new SqlDataAdapter(command))
             {
-                command.Parameters.AddWithValue("@persoonId" , persoonId);
-                command.Parameters.AddWithValue("@groepId" , groepId);
+                command.Parameters.AddWithValue("@persoonId", persoonId);
+                command.Parameters.AddWithValue("@groepId", groepId);
                 DataTable table = new DataTable();
                 adapter.Fill(table);
                 return table;
@@ -69,10 +69,10 @@ namespace TaakverdelingApp
             OpenConnection();
             SqlCommand command = new SqlCommand("SELECT * FROM Taak WHERE Id = @id", this.connection);
             command.Parameters.AddWithValue("@id", id);
-            SqlDataReader dr =command.ExecuteReader();
-            if(dr.HasRows)
+            SqlDataReader dr = command.ExecuteReader();
+            if (dr.HasRows)
             {
-                while(dr.Read())
+                while (dr.Read())
                 {
                     taak = new Taak(
                         dr["Naam"].ToString(),
@@ -104,25 +104,7 @@ namespace TaakverdelingApp
             command.ExecuteNonQuery();
             CloseConnection();
         }
-/*        public List<Groep> GetGroepn(int id)
-        {
-            List<Groep> mijnGroepen = new List<Groep>();
-            OpenConnection();
-            SqlCommand command = new SqlCommand("SELECT * FROM Groep", this.connection);
-            SqlDataReader dr = command.ExecuteReader();
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                    mijnGroepen.Add(new Groep(
-                        dr["Naam"].ToString(),
-                        dr["ProjectNaam"].ToString(),
-                        dr["ProjectNaam"].ToString()));
-                }
-            }
-            CloseConnection();
-            return mijnGroepen;
-        }*/
+
         public DataTable GetGroepen()
         {
             OpenConnection();
@@ -178,6 +160,21 @@ namespace TaakverdelingApp
                 adapter.Fill(table);
                 return table;
             }
+        }
+
+        public void VoegGroeplidToe(int groepId, string gebruikersNaam)
+        {
+            OpenConnection();
+            string query = @"INSERT INTO GroepPersoon
+                VALUES (@groepId,
+                (SELECT Id
+                FROM   Persoon
+                WHERE (Gebruikersnaam = @gebruikersNaam)), 1)";
+            SqlCommand command = new SqlCommand(query, this.connection);
+            command.Parameters.AddWithValue("@groepId", groepId);
+            command.Parameters.AddWithValue("@gebruikersNaam", gebruikersNaam);
+            command.ExecuteNonQuery();
+            CloseConnection();
         }
 
     }
