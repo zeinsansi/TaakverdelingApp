@@ -170,7 +170,13 @@ namespace TaakverdelingApp
         public void GroepVerwijderen(int Id)
         {
             OpenConnection();
-            SqlCommand command = new SqlCommand("DELETE FROM Groep WHERE Id = @Id", this.connection);
+            string query = @"Delete GroepPersoon 
+                where groepId = @Id
+                Delete Taak
+                where groepId = @Id
+                Delete Groep
+                where Id = @Id";
+            SqlCommand command = new SqlCommand(query, this.connection);
             command.Parameters.AddWithValue("@Id", Id);
             command.ExecuteNonQuery();
             CloseConnection();
