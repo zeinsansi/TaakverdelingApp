@@ -69,7 +69,9 @@ namespace TaakverdelingApp
             mg.ShowDialog(); 
 
         }
-
+        /// <summary>
+        /// Vult de Taken listbox met Taken van een bepaalde persoon in een bepaalde groep
+        /// </summary>
         private void FilTakenList()
         {
             lbxTaken.DataSource = db.GetTaken(persoonId , groepId);

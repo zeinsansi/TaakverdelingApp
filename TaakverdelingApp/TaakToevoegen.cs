@@ -35,8 +35,7 @@ namespace TaakverdelingApp
         {
             if(tbBeschrijving.Text != "" && tbNaam.Text != "")
             {
-                db.TaakToevoegen(new Taak(tbNaam.Text, tbBeschrijving.Text, datePicker.Value), persoonId , groepId);
-                MessageBox.Show("Taak toegevoegd");
+                db.TaakToevoegen(new Taak(tbNaam.Text, tbBeschrijving.Text, datePicker.Value), persoonId, groepId);
             }
         }
 

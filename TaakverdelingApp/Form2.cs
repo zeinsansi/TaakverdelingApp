@@ -46,7 +46,9 @@ namespace TaakverdelingApp
             lbMijnGroepen.DisplayMember = "Naam";
             lbMijnGroepen.ValueMember = "Id";
         }
-
+        /// <summary>
+        /// Vult de Groepleden listbox met goepleden van bepaalde groep
+        /// </summary>
         private void FilGroepledenList()
         {          
             Int32.TryParse(lbMijnGroepen.SelectedValue.ToString(), out groepId);

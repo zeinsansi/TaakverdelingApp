@@ -11,9 +11,10 @@ namespace TaakverdelingApp
 {
     internal class DatabaseManeger
     {
+        /// <summary>  De connection string van de database dbi490959  </summary>
         private static string connectionString = @"Server=mssqlstud.fhict.local;Database=dbi490959;User Id=dbi490959;Password=welkom123;";
         private SqlConnection connection;
-
+        /// <summary> Opent de connection met de database </summary>
         private void OpenConnection()
         {
             try
@@ -24,6 +25,7 @@ namespace TaakverdelingApp
             catch { return; }
         }
 
+        /// <summary> stopt de connection met de database </summary>
         private void CloseConnection()
         {
             try
@@ -32,7 +34,12 @@ namespace TaakverdelingApp
             }
             catch { return; }
         }
-
+        /// <summary>
+        /// Voegt een taak toe aan de databasetable Taak
+        /// </summary>
+        /// <param name="taak"></param>
+        /// <param name="persoonId"></param>
+        /// <param name="groepId"></param>
         public void TaakToevoegen(Taak taak, int persoonId, int groepId)
         {
             OpenConnection();
@@ -45,7 +52,12 @@ namespace TaakverdelingApp
             command.ExecuteNonQuery();
             CloseConnection();
         }
-
+        /// <summary>
+        /// Haalt de taken  van een bepaalde persoon in een bepalde groep van de database
+        /// </summary>
+        /// <param name="persoonId"></param>
+        /// <param name="groepId"></param>
+        /// <returns>Table met taken</returns>
         public DataTable GetTaken(int persoonId, int groepId)
         {
             OpenConnection();
@@ -62,7 +74,11 @@ namespace TaakverdelingApp
 
             }
         }
-
+        /// <summary>
+        /// Weergeeft een bepaalde taak van de database toe
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Gegevens van een bepaalde taak</returns>
         public Taak TaakWeergeven(int id)
         {
             Taak taak = null;
@@ -84,7 +100,7 @@ namespace TaakverdelingApp
             return taak;
         }
 
-
+        /// <summary> Verwijdert een bepaalde taak van de databasetable Taak </summary>
         public void TaakVerwijderen(int taakId)
         {
             OpenConnection();
@@ -93,7 +109,10 @@ namespace TaakverdelingApp
             command.ExecuteNonQuery();
             CloseConnection();
         }
-
+        /// <summary>
+        /// Voegt een groep toe aan databasetable Groep
+        /// </summary>
+        /// <param name="groep"></param>
         public void GroepMaken(Groep groep)
         {
             OpenConnection();
@@ -104,7 +123,10 @@ namespace TaakverdelingApp
             command.ExecuteNonQuery();
             CloseConnection();
         }
-
+        /// <summary>
+        /// Haalt de groepen van de database
+        /// </summary>
+        /// <returns>Table met groepen</returns>
         public DataTable GetGroepen()
         {
             OpenConnection();
@@ -116,6 +138,11 @@ namespace TaakverdelingApp
 
             }
         }
+        /// <summary>
+        /// Weergeeft een bepaalde groep van de database toe
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Groep GroepWeergeven(int id)
         {
             Groep groep = null;
@@ -136,6 +163,10 @@ namespace TaakverdelingApp
             CloseConnection();
             return groep;
         }
+        /// <summary>
+        /// Verwijdert een bepaalde groep van databasetable Groep
+        /// </summary>
+        /// <param name="Id"></param>
         public void GroepVerwijderen(int Id)
         {
             OpenConnection();
@@ -144,7 +175,11 @@ namespace TaakverdelingApp
             command.ExecuteNonQuery();
             CloseConnection();
         }
-
+        /// <summary>
+        /// Haalt groepleden van een bepaalde groep van de database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public DataTable GetGroepleden(int id)
         {
             OpenConnection();
@@ -161,7 +196,11 @@ namespace TaakverdelingApp
                 return table;
             }
         }
-
+        /// <summary>
+        /// Voegt een bepaalde persoon aan een bepaalde groep toe
+        /// </summary>
+        /// <param name="groepId"></param>
+        /// <param name="gebruikersNaam"></param>
         public void VoegGroeplidToe(int groepId, string gebruikersNaam)
         {
             OpenConnection();
@@ -176,7 +215,6 @@ namespace TaakverdelingApp
             command.ExecuteNonQuery();
             CloseConnection();
         }
-
     }
 
 }

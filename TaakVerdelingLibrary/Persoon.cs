@@ -8,27 +8,30 @@ namespace TaakVerdelingLibrary
 {
     public class Persoon
     {
+        /// <summary>  De naam van de persoon  </summary>
         private string Naam;
+        /// <summary> /// De unieke gebruikersnaan van de persoon /// </summary>
         private string GebruikerNaam;
-        public List<Taak> taken { get; } = new List<Taak>();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Naam"></param>
+        /// <param name="GebruikerNaam"></param>
         public Persoon (string Naam, string GebruikerNaam)
         {
             this.Naam = Naam;
             this.GebruikerNaam = GebruikerNaam;
         }
+        /// <summary>
+        /// Geeft de naam van de persoon terug
+        /// </summary>
+        /// <returns>Naam</returns>
         public string GetNaam() { return this.Naam; }
+        /// <summary>
+        /// Geeft de unieke gebruikersnaam van de persoon terug
+        /// </summary>
+        /// <returns>GebruikersNaam </returns>
         public string GetGebruikerNaam() { return this.GebruikerNaam; }
-
-        public void VoegTaakToe()
-        {
-
-        }
-
-        public void VerwijderTaak()
-        {
-
-        }
 
         public override string ToString()
         {
